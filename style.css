@@ -29,3 +29,14 @@ button {
     cursor: pointer;
     border-radius: 5px;
 }
+
+button {
+    margin: 5px;
+}
+
+#favorites {
+    margin-top: 20px;
+    max-height: 200px;
+    overflow-y: auto;
+    text-align: left;
+}
