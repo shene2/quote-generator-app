@@ -1,8 +1,7 @@
 body {
     margin: 0;
-    font-family: Arial, sans-serif;
-    background: linear-gradient(to right, #667eea, #764ba2);
-    color: white;
+    font-family: 'Poppins', sans-serif;
+    background: #f7f7fb;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -11,32 +10,40 @@ body {
 
 .container {
     text-align: center;
-    background: rgba(0,0,0,0.3);
+    background: #ffffff;
     padding: 30px;
-    border-radius: 10px;
+    border-radius: 20px;
     width: 400px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+}
+
+h1 {
+    color: #6d6875;
 }
 
 .quote-box {
     margin: 20px 0;
-}
-
-button {
-    padding: 10px 20px;
-    border: none;
-    background: #fff;
-    color: #333;
-    cursor: pointer;
-    border-radius: 5px;
+    padding: 20px;
+    border-radius: 15px;
+    background: #f0f4ff;
+    color: #444;
 }
 
 button {
     margin: 5px;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 20px;
+    background: #e0e7ff;
+    color: #444;
+    cursor: pointer;
+    transition: 0.3s;
 }
 
-#favorites {
-    margin-top: 20px;
-    max-height: 200px;
-    overflow-y: auto;
-    text-align: left;
+button:hover {
+    background: #c7d2fe;
+}
+
+.categories button {
+    font-size: 14px;
 }
