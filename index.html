@@ -3,48 +3,46 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Daily Wisdom</title>
+  <title>Quotable</title>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
+<div class="card" id="card">
+  <div class="blob blob1" id="b1"></div>
+  <div class="blob blob2" id="b2"></div>
 
-<div class="app">
-  <div class="corner tl"></div>
-  <div class="corner tr"></div>
-  <div class="corner bl"></div>
-  <div class="corner br"></div>
+  <div class="card-inner">
+    <div class="top-row">
+      <div class="logo">Quotable</div>
+      <div class="counter" id="counter">0 shown</div>
+    </div>
 
-  <div class="wordmark">Daily Wisdom</div>
+    <div class="moods" id="moods">
+      <button class="mood-btn active" data-mood="all"   data-color="#f7f4ff" data-blob="#ffe066" data-accent="#7c3aed">All</button>
+      <button class="mood-btn"        data-mood="calm"  data-color="#f0faff" data-blob="#80ffe8" data-accent="#0ea5e9">Calm</button>
+      <button class="mood-btn"        data-mood="focus" data-color="#fff8f0" data-blob="#ffa94d" data-accent="#f59e0b">Focus</button>
+      <button class="mood-btn"        data-mood="happy" data-color="#fff0f6" data-blob="#ff7eb3" data-accent="#ec4899">Happy</button>
+    </div>
 
-  <div class="moods" id="moods">
-    <button class="mood-btn active" data-mood="all">All</button>
-    <button class="mood-btn" data-mood="calm">Calm</button>
-    <button class="mood-btn" data-mood="focus">Focus</button>
-    <button class="mood-btn" data-mood="happy">Happy</button>
-  </div>
+    <div class="quote-box" id="qbox">
+      <div class="bigq" id="bigq">"</div>
+      <p id="quote">Press the button and get inspired.</p>
+      <p id="author"></p>
+    </div>
 
-  <div class="quote-area">
-    <div class="opening-mark">"</div>
-    <p id="quote">Click below to receive your first quote.</p>
-    <p id="author"></p>
-  </div>
+    <div class="actions">
+      <button class="btn-get" id="getBtn">New quote</button>
+      <button class="btn-sq" id="saveBtn" title="Save">★</button>
+      <button class="btn-sq" id="favBtn" title="Saved">☰</button>
+    </div>
 
-  <div class="divider"></div>
-
-  <div class="actions">
-    <button class="btn-primary" id="getBtn">New Quote</button>
-    <div style="display:flex;gap:4px">
-      <button class="btn-icon" id="saveBtn" title="Save quote">★</button>
-      <button class="btn-icon" id="favBtn" title="View saved">☰</button>
+    <div class="fav-panel" id="favPanel">
+      <div style="height:16px"></div>
+      <div class="fav-head">Saved quotes</div>
+      <div id="favList"></div>
     </div>
   </div>
-
-  <div class="favorites-panel" id="favPanel">
-    <div class="fav-label">Saved Quotes</div>
-    <div id="favList"></div>
-  </div>
 </div>
-
 <script src="script.js"></script>
 </body>
 </html>
