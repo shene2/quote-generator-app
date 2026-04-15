@@ -1,33 +1,48 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>Quote Generator</title>
-    <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Daily Wisdom</title>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-<div class="container">
-    <h1>Quote Generator</h1>
+<div class="app">
+  <div class="corner tl"></div>
+  <div class="corner tr"></div>
+  <div class="corner bl"></div>
+  <div class="corner br"></div>
 
-    <div class="categories">
-    <button onclick="setMood('all')">🌼 All</button>
-    <button onclick="setMood('calm')">🌊 Calm</button>
-    <button onclick="setMood('focus')">📘 Focus</button>
-    <button onclick="setMood('happy')">🌸 Happy</button>
-</div>
+  <div class="wordmark">Daily Wisdom</div>
 
-    <div class="quote-box">
-        <p id="quote">Click the button to get a quote</p>
-        <h3 id="author"></h3>
+  <div class="moods" id="moods">
+    <button class="mood-btn active" data-mood="all">All</button>
+    <button class="mood-btn" data-mood="calm">Calm</button>
+    <button class="mood-btn" data-mood="focus">Focus</button>
+    <button class="mood-btn" data-mood="happy">Happy</button>
+  </div>
+
+  <div class="quote-area">
+    <div class="opening-mark">"</div>
+    <p id="quote">Click below to receive your first quote.</p>
+    <p id="author"></p>
+  </div>
+
+  <div class="divider"></div>
+
+  <div class="actions">
+    <button class="btn-primary" id="getBtn">New Quote</button>
+    <div style="display:flex;gap:4px">
+      <button class="btn-icon" id="saveBtn" title="Save quote">★</button>
+      <button class="btn-icon" id="favBtn" title="View saved">☰</button>
     </div>
+  </div>
 
-    <button onclick="getQuote()">Get Quote</button>
-
-    <button onclick="saveQuote()">⭐ Save Quote</button>
-<button onclick="viewFavorites()">📂 View Favorites</button>
-
-<div id="favorites"></div>
+  <div class="favorites-panel" id="favPanel">
+    <div class="fav-label">Saved Quotes</div>
+    <div id="favList"></div>
+  </div>
 </div>
 
 <script src="script.js"></script>

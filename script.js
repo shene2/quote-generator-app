@@ -1,40 +1,66 @@
+let saved = [];
 let currentQuote = "";
 let currentAuthor = "";
 let currentMood = "all";
 
-// Fetch random quote
 async function getQuote() {
-    try {
-        const response = await fetch("https://dummyjson.com/quotes/random");
-        const data = await response.json();
+  const qEl = document.getElementById('quote');
+  const aEl = document.getElementById('author');
 
-        currentQuote = data.quote;
-        currentAuthor = data.author;
+  qEl.classList.add('fading');
+  aEl.classList.add('fading');
+  await new Promise(r => setTimeout(r, 350));
 
-        document.getElementById("quote").innerText = currentQuote;
-        document.getElementById("author").innerText = "- " + currentAuthor;
+  try {
+    const res = await fetch('https://dummyjson.com/quotes/random');
+    const data = await res.json();
+    currentQuote = data.quote;
+    currentAuthor = data.author;
+    qEl.textContent = currentQuote;
+    aEl.textContent = '— ' + currentAuthor;
+  } catch {
+    qEl.textContent = 'Unable to reach the source of wisdom.';
+    aEl.textContent = '';
+  }
 
-    } catch (error) {
-        document.getElementById("quote").innerText = "Failed to load quote.";
-        console.error("Error:", error);
-    }
+  qEl.classList.remove('fading');
+  aEl.classList.remove('fading');
+  document.getElementById('saveBtn').classList.remove('saved');
 }
 
-// Change UI mood (category feel)
-function setMood(mood) {
-    currentMood = mood;
-
-    const box = document.querySelector(".quote-box");
-
-    if (mood === "calm") {
-        box.style.background = "#e0f7fa";
-    } else if (mood === "focus") {
-        box.style.background = "#ede7f6";
-    } else if (mood === "happy") {
-        box.style.background = "#fff1f2";
-    } else {
-        box.style.background = "#f0f4ff";
-    }
-
-    getQuote(); // fetch new quote when mood changes
+function saveQuote() {
+  if (!currentQuote) return;
+  if (saved.find(s => s.quote === currentQuote)) return;
+  saved.push({ quote: currentQuote, author: currentAuthor });
+  document.getElementById('saveBtn').classList.add('saved');
+  renderFavorites();
 }
+
+function renderFavorites() {
+  const list = document.getElementById('favList');
+  if (!saved.length) {
+    list.innerHTML = '<p class="empty-fav">No quotes saved yet.</p>';
+    return;
+  }
+  list.innerHTML = saved.map(s => `
+    <div class="fav-item">
+      <p>${s.quote}</p>
+      <span>${s.author}</span>
+    </div>
+  `).join('');
+}
+
+document.getElementById('getBtn').addEventListener('click', getQuote);
+document.getElementById('saveBtn').addEventListener('click', saveQuote);
+document.getElementById('favBtn').addEventListener('click', () => {
+  document.getElementById('favPanel').classList.toggle('open');
+  renderFavorites();
+});
+
+document.getElementById('moods').addEventListener('click', e => {
+  if (!e.target.classList.contains('mood-btn')) return;
+  document.querySelectorAll('.mood-btn').forEach(b => b.classList.remove('active'));
+  e.target.classList.add('active');
+  currentMood = e.target.dataset.mood;
+  getQuote();
+});
